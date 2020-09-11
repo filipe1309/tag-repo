@@ -6,7 +6,7 @@
 
     
 
-    <form action="/search" method="post">
+    <form action="/" method="post">
         <label for="nome">Search repositories on GitHub:</label>
         <input type="text" class="form-control" name="q" id="Repo">
         @csrf

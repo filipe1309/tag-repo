@@ -15,7 +15,7 @@ class HomeController extends Controller
     {
         // $messages = Message::all();
         $githubClient = new \App\Api\GithubApiClient();
-        $results = $githubClient->get("search/repositories?q={$request->q}&per_page=10");
+        $results = $githubClient->get("search/repositories?q={$request->q}&per_page=10&sort=stars&order=desc");
         
         return view('home', compact('results'));
     }
