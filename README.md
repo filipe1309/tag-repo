@@ -1,7 +1,7 @@
 
-# Repository Tagger
+# Repository Tagger 🔍
 
-Hi everyone, this simple project aims to search and tag repositories
+Hi everyone, this simple project aims to search and tag repositories.
 
 ## About
 
@@ -17,3 +17,21 @@ php artisan migrate
 
 ## Usage
 
+### Tags & Repos
+
+#### Search page
+![Search page](resources/imgs/search.png)
+
+#### Tag page
+![Tags page](resources/imgs/tags.png)
+
+#### Repositories page
+![Repos page](resources/imgs/repos.png)
+
+## Authentication
+
+### Login page
+![Login page](resources/imgs/login.png)
+
+### Register page
+![Register page](resources/imgs/register.png)
