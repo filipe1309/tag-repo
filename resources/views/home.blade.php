@@ -4,22 +4,23 @@
 
 @section('content')
 
-    Search on GitHub:
+    
 
     <form action="/search" method="post">
-        <input type="text" name="q" placeholder="Repo">
+        <label for="nome">Search repositories on GitHub:</label>
+        <input type="text" class="form-control" name="q" id="Repo">
         @csrf
-        <button type="submit">Submit</button>
+        <button type="submit" class="btn btn-primary mt-2">Search</button>
     </form>
     
     <br>
     
     @if(isset($results))
-        Recent Messages:
+        <h1>Results</h1>
         
-        <ul>
+        <ul class="list-group">
         @foreach($results->items as $repo)
-            <li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
                 <strong>{{ $repo->full_name }}</strong>
             </li>
         @endforeach
