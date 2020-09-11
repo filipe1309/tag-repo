@@ -13,5 +13,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', '\App\Http\Controllers\HomeController@index');
-Route::post('/', '\App\Http\Controllers\HomeController@search');
+Route::get('/', '\App\Http\Controllers\HomeController@index')
+    ->name('home')
+    ->middleware('customauthenticator');
+
+Route::post('/', '\App\Http\Controllers\HomeController@search')
+    ->middleware('customauthenticator');
+
+// Authentication
+Route::get('/login', 'App\Http\Controllers\LoginController@index');
+Route::post('/login', 'App\Http\Controllers\LoginController@login');
+
+Route::get('/register', 'App\Http\Controllers\RegisterController@create');
+Route::post('/register', 'App\Http\Controllers\RegisterController@store');
+
+Route::get('/logout', function() {
+    \Illuminate\Support\Facades\Auth::logout();
+    return redirect('/login');
+});
