@@ -20,6 +20,12 @@ Route::get('/', '\App\Http\Controllers\HomeController@search')
 Route::post('/tag/store', 'App\Http\Controllers\TagController@store')
 ->middleware('customauthenticator');
 
+Route::post('/tag/update', 'App\Http\Controllers\TagController@update')
+->middleware('customauthenticator');
+
+Route::delete('/tag/{id}', 'App\Http\Controllers\TagController@destroy')
+    ->middleware('customauthenticator');
+
 Route::get('/tag', '\App\Http\Controllers\TagController@index')
     ->middleware('customauthenticator');
 
