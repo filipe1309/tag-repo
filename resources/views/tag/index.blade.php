@@ -6,7 +6,23 @@
     @csrf
 
     @if(!empty($tags))
-        <h1>Tags</h1>
+        <h1>
+            Tags 
+            <a href="#" id="new-tag" onclick="toggleNewTagInput()" class="btn-new-tag text-success">
+                <i class="fas fa-plus-circle"></i>
+            </a>
+            <div class="d-flex justify-content-between align-items-center">
+                <div hidden class="input-group mr-1" id="tag-new">
+                    <input type="text" class="form-control" id="tag-input-new" value="" placeholder="Tag name">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" onclick="addTag()">
+                            <i class="fas fa-check"></i>
+                        </button>
+                        @csrf
+                    </div>
+                </div>
+            </div>
+        </h1>
         
         <ul class="list-group">
         @foreach($tags as $tag)
@@ -39,6 +55,15 @@
     @endif
     
     <script>
+        function toggleNewTagInput() {
+            const tagNewInputEl = document.getElementById(`tag-new`);
+            if (tagNewInputEl.hasAttribute('hidden')) {
+                tagNewInputEl.removeAttribute('hidden');
+            } else {
+                tagNewInputEl.hidden = true;
+            }
+        }
+
         function toggleInput(tagId) {
             const tagEl = document.getElementById(`tag-${tagId}`);
             const tagInputEl = document.getElementById(`tag-input-${tagId}`);
@@ -56,23 +81,45 @@
         function addTag(tagId) {
             const allTagsBadgeEl = document.querySelectorAll(`.tag-badge`);
             const tagBadgeEl = document.getElementById(`tag-badge-${tagId}`);
-            const tagInputEl = document.getElementById(`tag-input-${tagId}`);
+            let tagInputEl = document.getElementById(`tag-input-${tagId}`);
+            if (!tagId) {
+                tagInputEl = document.getElementById('tag-input-new');
+            }
             let exists = false;
-
+            console.log(tagInputEl);
             allTagsBadgeEl.forEach((tag) => {
                 if (tag.textContent == tagInputEl.value && tag.id !== tagId) exists = true;
             });
 
             if (!exists && tagInputEl.value) {
                 console.log('new tag');
-                tagBadgeEl.textContent = tagInputEl.value;
-                updateTag(tagId, tagInputEl.value);
+                if (tagId) {
+                    tagBadgeEl.textContent = tagInputEl.value;
+                    updateTag(tagInputEl.value, tagId);
+                } else {
+                    createTag(tagInputEl.value, tagId);
+                }
             }
-            // toggleInput(tagId); 
-            // tagInputEl.value = '';
         }
 
-        function updateTag(tagId, tagName) {
+        function createTag(tagName) {
+            let formData = new FormData();
+            const token = document.querySelector(`input[name="_token"]`).value;
+            formData.append('tag_name', tagName);
+            formData.append('_token', token);
+            
+            const url = '/tag/store';
+            fetch(url, {
+                body: formData,
+                method: 'POST',
+            })
+            .then(() => {
+                toggleNewTagInput();
+                document.location.reload(true);
+            });
+        }
+
+        function updateTag(tagName, tagId) {
             let formData = new FormData();
             const token = document.querySelector(`input[name="_token"]`).value;
             formData.append('tag_id', tagId);
