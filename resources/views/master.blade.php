@@ -10,25 +10,33 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-2 d-flex justify-content-between">
-        <a class="navbar navbar-expand-lg" href="/">Home</a>
-        @auth
-
-            <a href="/logout"><?= Auth::user()['name']; ?> <span class="text-danger">(Logout)</span></a>
-        @endauth
-
-        @guest
-            <a href="/login">Login</a>
-        @endguest
-
-    </nav>
-
     <div class="container">
-        <div class="jumbotron">
-            <h1>TagApp</h1>
-        </div>
-
+        <nav class="navbar navbar-dark bg-dark navbar-expand-lg navbar-light bg-light mb-2 d-flex justify-content-between">
+            <a class="navbar-brand mb-0 h1" href="/">TagApp</a>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="#">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/tag">Tags</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/repo">Repos</a>
+                  </li>
+                </ul>
+              </div>
+            @auth
+                <a href="/logout"><?= Auth::user()['name']; ?> <span class="text-danger">(Logout)</span></a>
+            @endauth
+    
+            @guest
+                <a href="/login">Login</a>
+            @endguest
+    
+        </nav>
         @yield('content')
     </div>
+    
 </body>
 </html>

@@ -21,9 +21,9 @@
     </style>
 
     @csrf
+    <h1>Search</h1>
     <form action="/" method="get">
-        <label for="nome">Search repositories on GitHub:</label>
-        <input type="text" class="form-control" name="q" id="Repo" required>
+        <input type="text" class="form-control" name="q" id="Repo" placeholder="Search repositories on GitHub" required>
 
         <div class="row">
             <div class="col-sm-3">
@@ -31,7 +31,7 @@
                 <div class="form-check-inline">
                     <input class="form-check-input" type="radio" name="sort" id="sort1" value="stars" checked>
                     <label class="form-check-label" for="sort1">
-                        Star
+                        Stars
                     </label>
                 </div>
                 <div class="form-check-inline">
@@ -62,7 +62,9 @@
     </form>
     
     <br>
-    
+    <hr>
+    <br>
+
     @if(isset($results))
         <h1>Results {{ $page }}</h1>
         
