@@ -28,4 +28,11 @@ class TagController extends Controller
         $tag->name = $request->tag_name;
         $tag->save();
     }
+    
+    public function destroy(Request $request, TagRemover $tagRemover)
+    {
+        $tagRemover->removeTag($request->id);
+        
+        return redirect()->back();
+    }
 }
