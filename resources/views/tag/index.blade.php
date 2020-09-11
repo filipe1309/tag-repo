@@ -99,6 +99,8 @@
                 } else {
                     createTag(tagInputEl.value, tagId);
                 }
+            } else {
+                alert('Tag already exists');
             }
         }
 
