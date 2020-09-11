@@ -72,14 +72,14 @@
             // tagInputEl.value = '';
         }
 
-        function updateTag(tagId, tagNewName) {
+        function updateTag(tagId, tagName) {
             let formData = new FormData();
             const token = document.querySelector(`input[name="_token"]`).value;
-            formData.append('tag_id', tagName);
-            formData.append('tag_name', tagNewName);
+            formData.append('tag_id', tagId);
+            formData.append('tag_name', tagName);
             formData.append('_token', token);
             
-            const url = '/tag/store';
+            const url = '/tag/update';
             fetch(url, {
                 body: formData,
                 method: 'POST',

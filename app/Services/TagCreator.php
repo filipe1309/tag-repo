@@ -8,13 +8,14 @@ use Illuminate\Support\Facades\Auth;
 
 class TagCreator
 {
-    public function createTag(string $tagName, string $repoName): Tag
+    public function createTag(string $tagName, string $repoName = null): Tag
     {
         DB::beginTransaction();
-        $tag = Tag::firstOrCreate(['name' => $tagName]);
-        $repo = $this->createRepo($tag, $repoName);
-        $this->relateTagRepo($tag, $repo);
-        // $this->criarTemporadas($serie, $qtdTemporadas, $epPorTemporada);
+        $tag = Tag::firstOrCreate(['name' => $tagName, 'user_id' => Auth::id()]);
+        if ($repoName) {
+            $repo = $this->createRepo($tag, $repoName);
+            $this->relateTagRepo($tag, $repo);
+        }
         DB::commit();
 
         return $tag;
