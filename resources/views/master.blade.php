@@ -10,6 +10,19 @@
 </head>
 <body>
 
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-2 d-flex justify-content-between">
+        <a class="navbar navbar-expand-lg" href="/">Home</a>
+        @auth
+
+            <a href="/logout"><?= Auth::user()['name']; ?> <span class="text-danger">(Logout)</span></a>
+        @endauth
+
+        @guest
+            <a href="/login">Login</a>
+        @endguest
+
+    </nav>
+
     <div class="container">
         <div class="jumbotron">
             <h1>TagApp</h1>
