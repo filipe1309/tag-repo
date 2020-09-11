@@ -22,7 +22,7 @@ php artisan migrate
 #### Search page
 ![Search page](resources/imgs/search.png)
 
-#### Tag page
+#### Tags page
 ![Tags page](resources/imgs/tags.png)
 
 #### Repositories page
