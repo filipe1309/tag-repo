@@ -12,12 +12,9 @@
 
     <div class="container">
         <nav class="navbar navbar-dark bg-dark navbar-expand-lg navbar-light bg-light mb-2 d-flex justify-content-between">
-            <a class="navbar-brand mb-0 h1" href="/">TagApp</a>
+            <a class="navbar-brand mb-0 h1" href="/">Repository Tagger</a>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
-                  <li class="nav-item active">
-                    <a class="nav-link" href="#">Home</a>
-                  </li>
                   <li class="nav-item">
                     <a class="nav-link" href="/tag">Tags</a>
                   </li>

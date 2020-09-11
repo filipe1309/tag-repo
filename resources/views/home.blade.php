@@ -66,7 +66,7 @@
     <br>
 
     @if(isset($results))
-        <h1>Results {{ $page }}</h1>
+        <h1>Repositories <small class="text-muted">({{ $page }}/{{ (int) ($results->total_count/10) }})</small></h1>
         
         <ul class="list-group">
         @foreach($results->items as $repo)
