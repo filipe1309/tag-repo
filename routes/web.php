@@ -20,6 +20,10 @@ Route::get('/', '\App\Http\Controllers\HomeController@search')
 Route::post('/tag/store', 'App\Http\Controllers\TagController@store')
 ->middleware('customauthenticator');
 
+Route::get('/tag', '\App\Http\Controllers\TagController@index')
+    ->middleware('customauthenticator');
+
+
 // Authentication
 Route::get('/login', 'App\Http\Controllers\LoginController@index');
 Route::post('/login', 'App\Http\Controllers\LoginController@login');
