@@ -13,11 +13,12 @@ class CreateTagrepositoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('tagrepositories', function (Blueprint $table) {
-            $table->id();
+        Schema::create('tag_repositories', function (Blueprint $table) {
+            $table->bigIncrements('tag_repository_id');
             $table->foreignId('tag_id')->constrained();
             $table->foreignId('repository_id')->constrained();
             $table->foreignId('user_id')->constrained();
+            $table->string('tag_repository_type');
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateTagrepositoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tagrepositories');
+        Schema::dropIfExists('tag_repositories');
     }
 }
