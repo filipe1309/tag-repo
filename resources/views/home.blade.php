@@ -3,6 +3,23 @@
 @section('title', 'Homepage')
 
 @section('content')
+    <style>
+    .pagination {
+      display: inline-block;
+    }
+    
+    .pagination a {
+      color: black;
+      float: left;
+      padding: 8px 16px;
+      text-decoration: none;
+      transition: background-color .3s;
+      border: 1px solid #ddd;
+    }
+    
+    .pagination a:hover:not(.active) {background-color: #ddd;}
+    </style>
+
     @csrf
     <form action="/" method="get">
         <label for="nome">Search repositories on GitHub:</label>
@@ -47,7 +64,7 @@
     <br>
     
     @if(isset($results))
-        <h1>Results</h1>
+        <h1>Results {{ $page }}</h1>
         
         <ul class="list-group">
         @foreach($results->items as $repo)
@@ -84,9 +101,14 @@
                     </button>
                 </span>
             </li>
-            
         @endforeach
         </ul>
+        <div class="pagination">
+            <?php $searchParam['page']-- ?>
+            <a href="/?<?= http_build_query($searchParam)?>">❮</a>
+            <?php $searchParam['page']++;$searchParam['page']++; ?>
+            <a href="/?<?= http_build_query($searchParam)?>">❯</a>
+        </div>
     @endif
     
     <script>
