@@ -5,10 +5,45 @@
 @section('content')
 
     <form action="/" method="post">
-        <label for="nome">Search repositories on GitHub:</label>
-        <input type="text" class="form-control" name="q" id="Repo">
         @csrf
-        <button type="submit" class="btn btn-primary mt-2">Search</button>
+        <label for="nome">Search repositories on GitHub:</label>
+        <input type="text" class="form-control" name="q" id="Repo" required>
+
+        <div class="row">
+            <div class="col-sm-3">
+                Sort by:  
+                <div class="form-check-inline">
+                    <input class="form-check-input" type="radio" name="sort" id="sort1" value="stars" checked>
+                    <label class="form-check-label" for="sort1">
+                        Star
+                    </label>
+                </div>
+                <div class="form-check-inline">
+                    <input class="form-check-input" type="radio" name="sort" id="sort2" value="updated">
+                    <label class="form-check-label" for="sort2">
+                        Date
+                    </label>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                Order by:
+                <div class="form-check-inline">
+                    <input class="form-check-input" type="radio" name="order" id="order2" value="desc" checked>
+                    <label class="form-check-label" for="order2">
+                        DESC
+                    </label>
+                </div>  
+                <div class="form-check-inline">
+                    <input class="form-check-input" type="radio" name="order" id="order1" value="asc">
+                    <label class="form-check-label" for="order1">
+                        ASC
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">Search</button>
+
     </form>
     
     <br>
