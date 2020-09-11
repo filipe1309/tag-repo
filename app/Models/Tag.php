@@ -9,7 +9,7 @@ class Tag extends Model
 {
     use HasFactory;
 
-    public $fillable = ['name'];
+    public $fillable = ['name', 'user_id'];
 
     public function repositories()
     {
