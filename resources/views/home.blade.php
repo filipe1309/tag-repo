@@ -21,7 +21,20 @@
             <li class="list-group-item d-flex justify-content-between align-items-center">
                 <span class="d-flex">
                     <strong>{{ $repo->full_name }}</strong>
-                    <div id="tag-container-{{ $repo->id }}"></div>
+                    <div id="tag-container-{{ $repo->id }}">
+                    <?php
+                        $repoDb = \App\Models\Repository::firstWhere('name', $repo->full_name);
+                        if ($repoDb) {
+                            $tagRepos = \App\Models\TagRepository::where(['repository_id' => $repoDb->id, 'user_id' => \Illuminate\Support\Facades\Auth::id()])->get(); 
+                            if ($tagRepos) {
+                                $tagRepos->each(function($tagRepo) {
+                                    $tag = \App\Models\Tag::find($tagRepo->tag_id);
+                                    echo '<span class="badge badge-pill badge-primary ml-2">'.$tag->name.'</span>';
+                                });
+                            }
+                        }
+                    ?>
+                    </div>
                 </span>
                 <span class="d-flex">
                     <div class="input-group mr-1" hidden id="repo-{{ $repo->id }}">
@@ -64,8 +77,26 @@
 
             if (!exists && repoInputEl.value) {
                 tagContainerEl.innerHTML += `<span class="badge badge-pill badge-primary ml-2">${repoInputEl.value}</span>`;
+                createTagRepo(repoInputEl.value, repoId, repoName);
             }
             repoInputEl.value = '';
+        }
+
+        function createTagRepo(tagName, repoId, repoName) {
+            let formData = new FormData();
+            const token = document.querySelector(`input[name="_token"]`).value;
+            formData.append('tag_name', tagName);
+            formData.append('repo_name', repoName);
+            formData.append('_token', token);
+            
+            const url = '/tag/store';
+            fetch(url, {
+                body: formData,
+                method: 'POST',
+            })
+            .then(() => {
+                toggleInput(repoId);
+            });
         }
     </script>
 @endsection

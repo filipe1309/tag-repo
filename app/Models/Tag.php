@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Tag extends Model
 {
     use HasFactory;
+
+    public $fillable = ['name'];
+
+    public function repositories()
+    {
+        return $this->morphedByMany('App\Models\Repository', 'tag_repository');
+    }
 }
