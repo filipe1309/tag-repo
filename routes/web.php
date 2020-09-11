@@ -29,6 +29,8 @@ Route::delete('/tag/{id}', 'App\Http\Controllers\TagController@destroy')
 Route::get('/tag', '\App\Http\Controllers\TagController@index')
     ->middleware('customauthenticator');
 
+Route::get('/repo', '\App\Http\Controllers\RepoController@index')
+->middleware('customauthenticator');
 
 // Authentication
 Route::get('/login', 'App\Http\Controllers\LoginController@index');

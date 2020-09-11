@@ -11,4 +11,8 @@ class TagRepository extends Model
 
     public $fillable = ['tag_id', 'repository_id', 'user_id', 'tag_repository_type'];
 
+    public function repository()
+    {
+        return $this->hasOne('App\Models\Repository');
+    }
 }
