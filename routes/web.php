@@ -13,11 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', '\App\Http\Controllers\HomeController@index')
+Route::get('/', '\App\Http\Controllers\HomeController@search')
     ->name('home')
-    ->middleware('customauthenticator');
-
-Route::post('/', '\App\Http\Controllers\HomeController@search')
     ->middleware('customauthenticator');
 
 Route::post('/tag/store', 'App\Http\Controllers\TagController@store')

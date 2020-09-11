@@ -3,9 +3,8 @@
 @section('title', 'Homepage')
 
 @section('content')
-
-    <form action="/" method="post">
-        @csrf
+    @csrf
+    <form action="/" method="get">
         <label for="nome">Search repositories on GitHub:</label>
         <input type="text" class="form-control" name="q" id="Repo" required>
 
@@ -43,7 +42,6 @@
         </div>
 
         <button type="submit" class="btn btn-primary mt-3">Search</button>
-
     </form>
     
     <br>
